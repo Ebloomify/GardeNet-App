@@ -1,0 +1,208 @@
+{
+    "name" : "GardeNet",
+    "appid" : "__UNI__E8286B1",
+    "description" : "",
+    "versionName" : "2.2.2",
+    "versionCode" : 222,
+    "transformPx" : false,
+    /* 5+App特有相关 */
+    "app-plus" : {
+        "privacy" : {
+            "prompt" : "template",
+            "template" : {
+                "title" : "Service agreement and privacy policy",
+                "message" : "　　Please carefully read and fully understand the terms of the 'service agreement' and 'privacy policy', including but not limited to: in order to better provide services to you, we need to collect your device identification, operation log and other information for analysis and optimization of application performance.<br/>　　You can read<a href='http://gardenet.ebloomify.com/H5/#/pages/rule/rule?keyword=rule1'>《Service agreement》</a>and<a href='http://gardenet.ebloomify.com/H5/#/pages/rule/rule?keyword=rule2'>《Privacy policy》</a>Learn more. If you agree, please click the button below to start accepting our service.",
+                "buttonAccept" : "agree",
+                "buttonRefuse" : "disagree"
+            }
+        },
+        "usingComponents" : true,
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : false,
+            "waiting" : true,
+            "autoclose" : false,
+            "delay" : 0
+        },
+        /* 模块配置 */
+        "modules" : {
+            "VideoPlayer" : {},
+            "Share" : {},
+            "Barcode" : {},
+            "Camera" : {},
+            "Push" : {}
+        },
+        /* 应用发布信息 */
+        "distribute" : {
+            /* android打包配置 */
+            "android" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    // "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    // "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    // "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+                    "<uses-permission android:name=\"com.google.android.gms.permission.AD_ID\"/>",
+                    "<uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\"/>"
+                ],
+                "schemes" : "MyGarden",
+                "permissionExternalStorage" : {
+                    "request" : "none",
+                    "prompt" : "The application needs to obtain read and write permissions for mobile storage to save running status and other information. Please allow it."
+                },
+                "permissionPhoneState" : {
+                    "request" : "always",
+                    "prompt" : "In order to properly identify mobile devices and carrier networks, please allow the use of phone permission 1"
+                },
+                "targetSdkVersion" : 34,
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ],
+                "minSdkVersion" : 21
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "We need your permission to use the camera in order to obtain your profile picture, garden image, etc",
+                    "NSPhotoLibraryAddUsageDescription" : "We need your permission to use the album in order to save and share pictures",
+                    "NSCameraUsageDescription" : "We need your permission to use the camera in order to obtain your profile picture, share pictures, etc"
+                },
+                "urltypes" : "MyGarden",
+                "idfa" : false,
+                "dSYMs" : false
+            },
+            /* SDK配置 */
+            "sdkConfigs" : {
+                "push" : {
+                    "unipush" : {
+                        "icons" : {
+                            "small" : {
+                                "ldpi" : "unpackage/res/icons/20x20.png",
+                                "mdpi" : "unpackage/res/icons/29x29.png",
+                                "hdpi" : "unpackage/res/icons/40x40.png",
+                                "xhdpi" : "unpackage/res/icons/58x58.png",
+                                "xxhdpi" : "unpackage/res/icons/72x72.png"
+                            }
+                        }
+                    }
+                },
+                "share" : {},
+                "ad" : {},
+                "payment" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                }
+            },
+            "splashscreen" : {
+                "useOriginalMsgbox" : true
+            }
+        },
+        "nativePlugins" : {
+            "JY-GoogleAdMob" : {
+                "android_appid" : "ca-app-pub-5707161891548694~8595189944",
+                "ios_appid" : "ca-app-pub-5707161891548694~2406680372",
+                "__plugin_info__" : {
+                    "name" : "JYGoogle谷歌广告AdMob - 首发支持安卓+iOS",
+                    "description" : "谷歌AdMob 支持安卓+iOS",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=2593",
+                    "android_package_name" : "uni.UNIE8286B1",
+                    "ios_bundle_id" : "io.mygarden.com",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "2593",
+                    "parameters" : {
+                        "android_appid" : {
+                            "des" : "安卓 - 谷歌AdMob的APPID(兼容)",
+                            "key" : "com.google.android.gms.ads.APPLICATION_ID",
+                            "value" : ""
+                        },
+                        "ios_appid" : {
+                            "des" : "iOS - 谷歌AdMob的APPID(兼容)",
+                            "key" : "GADApplicationIdentifier",
+                            "value" : ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    /* 快应用特有相关 */
+    "quickapp" : {},
+    /* 小程序特有相关 */
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : true,
+            "es6" : true
+        },
+        "usingComponents" : true,
+        "permission" : {}
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "uniStatistics" : {
+        "enable" : false
+    },
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {}
+        },
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        }
+    }
+}

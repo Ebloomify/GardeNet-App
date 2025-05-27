@@ -1,0 +1,105 @@
+https://apps.admob.com/v2/home
+ebloomifyllc@gmail.com
+Newday01012019
+
+苹果开发者账号
+
+
+ios
+app ID：ca-app-pub-5707161891548694~2406680372
+
+
+
+Android
+app ID：ca-app-pub-5707161891548694~8595189944
+插页广告：ca-app-pub-5707161891548694/5327817443
+
+
+
+测试
+Android：ca-app-pub-5707161891548694~8595189944
+Ios: ca-app-pub-5707161891548694~2406680372
+
+
+
+https://docs.apipost.cn/view/c3eeecdbba12cb4f
+
+000000
+
+1.discover推荐，后台操作，接口搜索：推荐
+2.我发布的bbs和qa获得的评论，接口搜索：获得的
+3.公告，用的后台通用新闻接口，传关键字
+4.上传视频新增字段：videourl
+5.qa排序，新增参数 orderstr ，传 price desc价格排序，传 addtime desc时间排序
+
+
+阿里云账号
+grl13621127442
+grl0403
+
+
+
+
+PayPal的企业用户登录名和密码：  Ruiligeng0403@163.com
+  Newday****2019
+密码：01012019
+
+
+衣服
+https://dou.symhw.net/app/index.php?i=4&c=entry&m=ewei_shopv2&do=mobile&r=goods&cate=1
+
+裤子
+https://dou.symhw.net/app/index.php?i=4&c=entry&m=ewei_shopv2&do=mobile&r=goods&cate=2
+
+鞋
+https://dou.symhw.net/app/index.php?i=4&c=entry&m=ewei_shopv2&do=mobile&r=goods&cate=3
+
+
+前台商城首页
+https://dou.symhw.net/app/index.php?i=4&c=entry&m=ewei_shopv2&do=mobile
+
+B端后台
+https://dou.symhw.net/web/merchant.php?i=4
+
+
+前台商品列表
+https://dou.symhw.net/app/index.php?i=4&c=entry&m=ewei_shopv2&do=mobile&r=merch.list
+
+
+
+总后台：
+https://dou.symhw.net/
+用户名：admin
+密码：admin888
+
+客户后台
+https://dou.symhw.net/
+用户名：admin01
+密码：12345678
+
+
+PHP接口地址
+http://garde.ixiwei.top/doc/
+请求地址
+http://garde.ixiwei.top/api
+
+
+App Open	ca-app-pub-3940256099942544/9257395921
+Adaptive Banner	ca-app-pub-3940256099942544/9214589741
+Banner	ca-app-pub-3940256099942544/6300978111
+Interstitial	ca-app-pub-3940256099942544/1033173712
+Interstitial Video	ca-app-pub-3940256099942544/8691691433
+Rewarded	ca-app-pub-3940256099942544/5224354917
+Rewarded Interstitial	ca-app-pub-3940256099942544/5354046379
+Native Advanced	ca-app-pub-3940256099942544/2247696110
+Native Advanced Video	ca-app-pub-3940256099942544/1044960115
+
+安卓
+Interstitial：插页广告 ： ca-app-pub-5707161891548694/9403166005
+Rewarded： 激励广告 ：ca-app-pub-5707161891548694/5327817443
+
+
+manifest配置
+
+苹果：ca-app-pub-5707161891548694~2406680372
+安卓：ca-app-pub-5707161891548694~8595189944

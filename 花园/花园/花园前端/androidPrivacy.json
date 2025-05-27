@@ -1,0 +1,27 @@
+{
+    "version" : "1",
+    "prompt" : "template",
+    "title" : "Service agreement and privacy policy",
+    "message" : "　　Please carefully read and fully understand the terms of the 'service agreement' and 'privacy policy', including but not limited to: in order to better provide services to you, we need to collect your device identification, operation log and other information for analysis and optimization of application performance.<br/>　　You can read<a href='http://gardenet.ebloomify.com/H5/#/pages/rule/rule?keyword=rule1'>《Service agreement》</a>and<a href='http://gardenet.ebloomify.com/H5/#/pages/rule/rule?keyword=rule2'>《Privacy policy》</a>Learn more. If you agree, please click the button below to start accepting our service.",
+    "buttonAccept" : "agree",
+    "buttonRefuse" : "disagree",
+    "second" : {
+        "title" : "确认提示",
+        "message" : "",
+        "buttonAccept" : "agree",
+        "buttonRefuse" : "disagree"
+    },
+    "styles" : {
+        "backgroundColor" : "#fff",
+        "borderRadius" : "5px",
+        "title" : {
+            "color" : "#333"
+        },
+        "buttonAccept" : {
+            "color" : "blue"
+        },
+        "buttonRefuse" : {
+            "color" : "#666"
+        }
+    }
+}

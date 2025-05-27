@@ -1,0 +1,34 @@
+别名：io.garden.com
+密码：123456
+证书：garden.jks
+
+
+密钥库类型： JKS
+密钥库提供方： SUN
+您的密钥库包含 1 个条目
+别名： __uni__e8286b1
+密码：YV2SEWJA
+创建日期： Jul 3, 2023
+条目类型： PrivateKeyEntry
+证书链长度： 1
+证书[1]：
+所有者： CN=b8bpk9orIJuUKM7QU5NCKlrcCzvh5Q9yBB6kuujio2OwUfGAUqIv9%2BBhZBeEnW3zpvn1bk%2FwY04kRlMYlAjPQA%3D%3D, OU=Android, O=Android, L=, ST=, C=CN
+发布者： CN=b8bpk9orIJuUKM7QU5NCKlrcCzvh5Q9yBB6kuujio2OwUfGAUqIv9%2BBhZBeEnW3zpvn1bk%2FwY04kRlMYlAjPQA%3D%3D, OU=Android, O=Android, L=, ST=, C=CN
+序列号： 1979ab63
+生效时间： Mon Jul 03 13:42:07 CST 2023 失效时间： Wed Jun 09 13:42:07 CST 2123
+证书指纹：
+MD5: DF:1F:BE:B9:E4:3E:41:E1:12:54:B7:03:EC:7F:7D:17
+SHA1: BE:7F:3D:96:09:15:8A:F6:7B:D2:7C:59:C9:D3:9B:F8:B4:D2:A8:7A
+SHA256: B3:6B:65:2A:4B:D0:A4:6C:B2:7A:A9:B1:FA:9C:36:73:4D:59:13:51:13:05:C6:43:57:99:EB:DA:71:D7:96:52
+签名算法名称： SHA256withRSA
+版本： 3
+扩展：
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 97 BF 08 77 30 39 B2 AE 3D A9 E2 27 FE B6 C3 35 ...w09..=..'...5
+0010: FC 00 F9 B2 ....
+]
+]
+*******************************************
+*******************************************

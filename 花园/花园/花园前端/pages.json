@@ -1,0 +1,620 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "banner/banner",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#000000",
+				"app-plus": {
+					"background": "#000000"
+				}
+			}
+
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "MyGarden",
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+
+				}
+			}
+		}, {
+			"path": "pages/bbs/bbs",
+			"style": {
+				"navigationBarTitleText": "MyGarden",
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+
+				}
+			}
+
+		}, {
+			"path": "pages/qa/qa",
+			"style": {
+				"navigationBarTitleText": "MyGarden",
+				"navigationStyle": "custom",
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+
+				}
+			}
+
+		}, {
+			"path": "pages/center/center",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#f7f8fb",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"bounce": false
+				}
+			}
+
+		}, {
+			"path": "pages/index/disInfo",
+			"style": {
+				"navigationBarTitleText": "Discover",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/index/reply",
+			"style": {
+				"navigationBarTitleText": "Discover",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/bbs/bbsInfo",
+			"style": {
+				"navigationBarTitleText": "Community",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/bbs/reply",
+			"style": {
+				"navigationBarTitleText": "Community",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/qa/qaInfo",
+			"style": {
+				"navigationBarTitleText": "Q&A",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/qa/reply",
+			"style": {
+				"navigationBarTitleText": "Q&A",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"softinputMode": "adjustResize",
+					"scrollIndicator": "none",
+					"bounce": "none"
+				}
+			}
+
+		},{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/search/list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/rule/rule",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/userInfo/userInfo",
+			"style": {
+				"navigationBarTitleText": "Edit My Profile",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "uview-ui/components/u-avatar-cropper/u-avatar-cropper",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		},
+		{
+			"path": "pages/center/integral/integral",
+			"style": {
+				"navigationBarTitleText": "My Rewards",
+				"navigationBarBackgroundColor": "#48ceb5",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white"
+			}
+
+		}, {
+			"path": "pages/center/set/set",
+			"style": {
+				"navigationBarTitleText": "Setting",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/set/editPassword/editPassword",
+			"style": {
+				"navigationBarTitleText": "Change Password",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/set/feedback/feedback",
+			"style": {
+				"navigationBarTitleText": "Feedback",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/set/about/about",
+			"style": {
+				"navigationBarTitleText": "About GardeNet",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/notification/notification",
+			"style": {
+				"navigationBarTitleText": "Notification",
+				"enablePullDownRefresh": false,
+				"disableScroll": true, // 禁止原生页面滚动, 解决Android小程序下拉卡顿的问题
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+				}
+			}
+
+		}, {
+			"path": "pages/center/notification/info",
+			"style": {
+				"navigationBarTitleText": "Notification",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+				}
+			}
+
+		}, {
+			"path": "pages/center/follow/follow",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black",
+				"disableScroll": true, // 禁止原生页面滚动, 解决Android小程序下拉卡顿的问题
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+				}
+			}
+
+		}, {
+			"path": "pages/center/collection/collection",
+			"style": {
+				"navigationBarTitleText": "My collection",
+				"enablePullDownRefresh": false,
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/userIndex/userIndex",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+
+			}
+
+		}, {
+			"path": "pages/center/bbs/bbs",
+			"style": {
+				"navigationBarTitleText": "My Community Post",
+				"enablePullDownRefresh": false,
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/center/qa/qa",
+			"style": {
+				"navigationBarTitleText": "My Q&A",
+				"enablePullDownRefresh": false,
+				"disableScroll": true,
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/photo/photo",
+			"style": {
+				"navigationBarTitleText": "MyGarden",
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/photo/result",
+			"style": {
+				"navigationBarTitleText": "Results",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+
+			}
+
+		}, {
+			"path": "pages/center/garden/garden",
+			"style": {
+				"navigationBarTitleText": "My Plants",
+				"enablePullDownRefresh": false,
+				"h5": {
+					"titleNView": {
+						"buttons": [{
+							"color": "#333",
+							"float": "right",
+							"text": "Add",
+							"fontSize": "16"
+						}]
+					}
+				},
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"color": "#333",
+							"float": "right",
+							"text": "Add",
+							"fontSize": "16"
+						}]
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/center/garden/add",
+			"style": {
+				"navigationBarTitleText": "Add",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/garden/search",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		}, {
+			"path": "pages/center/garden/info",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none",
+						"buttons": [{
+							"float": "right",
+							"type": "none",
+							"fontSrc": "/static/fonts/iconfont.ttf",
+							"text": "\ue63c",
+							"fontSize": "16"
+						}]
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none",
+						"buttons": [{
+							"float": "right",
+							"type": "none",
+							"fontSrc": "/static/fonts/iconfont.ttf",
+							"text": "\ue63c",
+							"fontSize": "16"
+						}]
+					}
+				}
+
+			}
+
+		}, {
+			"path": "pages/center/garden/setAlarm",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "Login",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/login/register",
+			"style": {
+				"navigationBarTitleText": "Register",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				}
+
+			}
+
+		}, {
+			"path": "pages/login/backPwd",
+			"style": {
+				"navigationBarTitleText": "Forgot password",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#48d1a7",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				},
+				"app-plus": {
+					"scrollIndicator": "none",
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent",
+						"bounce": "none"
+					}
+				}
+
+			}
+
+		}, {
+			"path": "pages/center/share/share",
+			"style": {
+				"navigationBarTitleText": "Share",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/add/add",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom",
+				"app-plus": {
+					"animationType": "fade-in", // 设置fade-in淡入动画，为最合理的动画类型
+					"background": "transparent", // 背景透明
+					"backgroundColor": "rgba(0,0,0,0)", // 背景透明
+					"popGesture": "none" // 关闭IOS屏幕左边滑动关闭当前页面的功能
+				}
+			}
+
+		}, {
+			"path": "pages/add/bbs",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/center/schedule/schedule",
+			"style": {
+				"navigationBarTitleText": "Garden schedule",
+				"enablePullDownRefresh": false,
+				"disableScroll": true, // 禁止原生页面滚动, 解决Android小程序下拉卡顿的问题
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突 (可统一配在 'globalStyle')
+				}
+			}
+
+		}, {
+			"path": "pages/webView/webView",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+	    ,{
+            "path" : "pages/requset/requset",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/center/set/deletedAccount/deletedAccount",
+            "style": {
+            	"navigationBarTitleText": "Account deleted",
+            	"enablePullDownRefresh": false
+            }
+            
+        },
+        {
+        	"path" : "pages/AdPage/AdPage",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "testAD",
+        		"enablePullDownRefresh" : false
+        	}
+        }
+    ],
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#48cfb2",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/images/i1.png",
+				"selectedIconPath": "static/images/s1.png",
+				"text": "Discover"
+			},
+			{
+				"pagePath": "pages/bbs/bbs",
+				"iconPath": "static/images/i2.png",
+				"selectedIconPath": "static/images/s2.png",
+				"text": "Community"
+			},
+			{
+				"pagePath": "pages/qa/qa",
+				"iconPath": "static/images/i3.png",
+				"selectedIconPath": "static/images/s3.png",
+				"text": "Q&A"
+			},
+			{
+				"pagePath": "pages/center/center",
+				"iconPath": "static/images/i4.png",
+				"selectedIconPath": "static/images/s4.png",
+				"text": "My Garden"
+			}
+		],
+		"midButton": {
+			"width": "80px",
+			"height": "70px",
+			"text": "",
+			"iconPath": "static/images/qian.png",
+			"iconWidth": "50px"
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "MyGarden",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
