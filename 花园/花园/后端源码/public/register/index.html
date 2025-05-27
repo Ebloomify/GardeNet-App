@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="telephone=no">
+    <title>MyGarden</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .banner{
+        width: 100%;
+        display: block;
+    }
+    .big{
+        text-transform: uppercase
+    }
+    .btn_box{
+        width: 80%;
+        margin: auto;  
+    }
+    .btn{
+        line-height: 40px;
+        border-radius: 20px;
+        background-image: linear-gradient(to right, #52d0bb, #48d39a);   
+        background-image: -webkit-linear-gradient(to right, #52d0bb, #48d39a);   
+        background-image: -moz-linear-gradient(to right, #52d0bb, #48d39a);   
+    }
+    .dots{
+        margin-top: 20px
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="images/1.png" alt="" class="banner">
+                    <div class="tac fz18 c3 big">
+                        GardeNet Introduction
+                    </div>
+                    <div class="fz14 c3 p20 tac">
+                        <div class="mb10"> Originated in the minds of enthusiastic Internet users with a passion for gardening, GardeNet is created and oriented in sharing knowledge, sharing life and sharing gardening love.</div>
+                        <div>The goal of the gardener is to grow your plant, grow a greener social life and circle, and grow your world. </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="swiper-slide">
+                    <img src="images/2.png" alt="" class="banner">
+                    <div class="tac fz18 c3 big">
+                        GardeNet Introduction
+                    </div>
+                    <div class="fz14 c3 p20 tac">
+                        <div class="mb10">Discovery—Find gardening inspiration, get plant care instructions, identify plants and how-to useful tips. Wondering how to grow your plants and use indoor plants to decorate your dwelling? Read up on all this in the newest articles in “Discovery.”</div>
+                        <div>Community—This app is launched with a mission to connect, help and inspire others to nurture and love plants, in a plant growing world. Find your friends, share your beautiful plants, and learn lessons about your friends successful plant experiences. </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="swiper-slide">
+                    <img src="images/3.png" alt="" class="banner">
+                    <div class="tac fz18 c3 big">
+                        GardeNet Introduction
+                    </div>
+                    <div class="fz14 c3 p20 tac">
+                        <div class="mb10">Questions & Answers— Have you ever wanted to easily identify a plant or ease concerns about a plant disease? You will get the answers from the </div>
+                        <div>GardeNet experts and other experienced gardeners. How do you show your generosity for help received from others? Reward them! Experienced gardeners receive rewards for helping others. Remember, you can also become an expert with experience, and help other gardeners resolve problems. Get rewards for yourself!!</div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="swiper-slide">
+                    <img src="images/4.png" alt="" class="banner">
+                    <div class="tac fz18 c3 big">
+                        GardeNet Introduction
+                    </div>
+                    <div class="fz14 c3 p20 tac">
+                        <div class="">My Garden— Your plants will grow and thrive with love from both the heart and hand. </div>
+                        <div>•</div>
+                        <div class="">Schedule and receive reminders to water, fertilize and repot your your plants on time.</div>
+                        <div>•</div>
+                        <div class="">E-Shoping Mall: Find what you need to keep your plants healthy in our e- shopping mall. All products are specialized for your gardening needs.</div>
+                        <div>•</div>
+                        <div>Rewards : Turn your activities into reward points. The more you engage in gardening activity through GardeNet, the more rewards you receive.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="h40"></div>
+            <div class="swiper-pagination dots"></div>
+        </div>
+        <!--  -->
+        <div class="btn_box">
+            <a href="javascript:void(0);" onclick="nav()" class="cf">
+                <div class="btn  tac">Register</div>
+            </a>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script type='text/javascript' src='js/swiper.min.js' charset='utf-8'></script>
+<script>
+$(".swiper-container").swiper({});
+function nav () {
+    window.location.href = 'register.html?id=' + (getQueryVariable('id') || '')
+}
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
+</script>
+
+</html>

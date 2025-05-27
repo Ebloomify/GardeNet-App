@@ -1,0 +1,404 @@
+{extend name='common/_container'}
+{block name="content"}
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="CodeInfoForm">
+			<div class="row">
+				<div class="layui-tab layui-tab-brief" lay-filter="test">
+					<ul class="layui-tab-title">
+						<li class="layui-this">基本设置</li>
+						<li>邮件设置</li>
+						<li>Discover设置</li>
+						<li>Community设置</li>
+						<li>QA设置</li>
+						<li>协议</li>
+						<li>关于我们</li>
+						<li>分享文本</li>
+						<li>积分商城</li>
+					</ul>
+					<div class="layui-tab-content" style="margin-top:10px;">
+						<div class="layui-tab-item layui-show">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">站点名称：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="site_title" value="{$info.site_title}" name="site_title" class="form-control" placeholder="请输入站点名称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">站点LOGO：</label>
+						<div class="col-sm-5">
+							<input type="text" autocomplete="off" id="site_logo" value="{$info.site_logo}" {if condition="config('my.img_show_status') eq true"}onmousemove="showBigPic(this.value)" onmouseout="closeimg()"{/if} name="site_logo" class="form-control" placeholder="请输入站点LOGO">
+							<span class="help-block m-b-none site_logo_process"></span>
+						</div>
+						<div class="col-sm-2" style="position:relative; right:30px;">
+							<span id="site_logo_upload"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">关键词站点：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" class="form-control" data-role="tagsinput" id="keyword" value="{$info.keyword}" name="keyword"  >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">站点描述：</label>
+						<div class="col-sm-9">
+							<textarea id="description" name="description"  class="form-control" placeholder="请输入站点描述">{$info.description}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">站点版权：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="copyright" value="{$info.copyright}" name="copyright" class="form-control" placeholder="请输入站点版权">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">用户默认头像：</label>
+						<div class="col-sm-5">
+							<input type="text" autocomplete="off" id="member_default_avatar" value="{$info.member_default_avatar}" {if condition="config('my.img_show_status') eq true"}onmousemove="showBigPic(this.value)" onmouseout="closeimg()"{/if} name="member_default_avatar" class="form-control" placeholder="请输入用户默认头像">
+							<span class="help-block m-b-none member_default_avatar_process"></span>
+						</div>
+						<div class="col-sm-2" style="position:relative; right:30px;">
+							<span id="member_default_avatar_upload"></span>
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">STMP服务器地址：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="email_stmp_address" value="{$info.email_stmp_address}" name="email_stmp_address" class="form-control" placeholder="请输入STMP服务器地址">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">STMP服务器端口号：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="email_stmp_port" value="{$info.email_stmp_port}" name="email_stmp_port" class="form-control" placeholder="请输入STMP服务器端口号">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">邮箱账户：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="email_username" value="{$info.email_username}" name="email_username" class="form-control" placeholder="请输入邮箱账户">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">发件人昵称：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="email_nickname" value="{$info.email_nickname}" name="email_nickname" class="form-control" placeholder="请输入发件人昵称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">授权码：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="email_stmp_code" value="{$info.email_stmp_code}" name="email_stmp_code" class="form-control" placeholder="请输入授权码">
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['discover_comment_status'])){ $info['discover_comment_status'] = 1; }; ?>
+							<input name="discover_comment_status" value="1" type="radio" {if condition="$info.discover_comment_status eq '1'"}checked{/if} title="开启">
+							<input name="discover_comment_status" value="0" type="radio" {if condition="$info.discover_comment_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论审核开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['discover_comment_auth_status'])){ $info['discover_comment_auth_status'] = 1; }; ?>
+							<input name="discover_comment_auth_status" value="1" type="radio" {if condition="$info.discover_comment_auth_status eq '1'"}checked{/if} title="开启">
+							<input name="discover_comment_auth_status" value="0" type="radio" {if condition="$info.discover_comment_auth_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">Discover推荐分类开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['is_discover'])){ $info['is_discover'] = 1; }; ?>
+							<input name="is_discover" value="1" type="radio" {if condition="$info.is_discover eq '1'"}checked{/if} title="开启">
+							<input name="is_discover" value="0" type="radio" {if condition="$info.is_discover eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">发布审核开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['community_auth_status'])){ $info['community_auth_status'] = 1; }; ?>
+							<input name="community_auth_status" value="1" type="radio" {if condition="$info.community_auth_status eq '1'"}checked{/if} title="开启">
+							<input name="community_auth_status" value="0" type="radio" {if condition="$info.community_auth_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['community_comment_status'])){ $info['community_comment_status'] = 1; }; ?>
+							<input name="community_comment_status" value="1" type="radio" {if condition="$info.community_comment_status eq '1'"}checked{/if} title="开启">
+							<input name="community_comment_status" value="0" type="radio" {if condition="$info.community_comment_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论审核开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['community_comment_auth_status'])){ $info['community_comment_auth_status'] = 1; }; ?>
+							<input name="community_comment_auth_status" value="1" type="radio" {if condition="$info.community_comment_auth_status eq '1'"}checked{/if} title="开启">
+							<input name="community_comment_auth_status" value="0" type="radio" {if condition="$info.community_comment_auth_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">Community推荐分类开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['is_community'])){ $info['is_community'] = 1; }; ?>
+							<input name="is_community" value="1" type="radio" {if condition="$info.is_community eq '1'"}checked{/if} title="开启">
+							<input name="is_community" value="0" type="radio" {if condition="$info.is_community eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">发布审核开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['qa_auth_status'])){ $info['qa_auth_status'] = 1; }; ?>
+							<input name="qa_auth_status" value="1" type="radio" {if condition="$info.qa_auth_status eq '1'"}checked{/if} title="开启">
+							<input name="qa_auth_status" value="0" type="radio" {if condition="$info.qa_auth_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['qa_comment_status'])){ $info['qa_comment_status'] = 1; }; ?>
+							<input name="qa_comment_status" value="1" type="radio" {if condition="$info.qa_comment_status eq '1'"}checked{/if} title="开启">
+							<input name="qa_comment_status" value="0" type="radio" {if condition="$info.qa_comment_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">评论审核开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['qa_comment_auth_status'])){ $info['qa_comment_auth_status'] = 1; }; ?>
+							<input name="qa_comment_auth_status" value="1" type="radio" {if condition="$info.qa_comment_auth_status eq '1'"}checked{/if} title="开启">
+							<input name="qa_comment_auth_status" value="0" type="radio" {if condition="$info.qa_comment_auth_status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">Q&amp;A推荐分类开关：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['is_qa'])){ $info['is_qa'] = 1; }; ?>
+							<input name="is_qa" value="1" type="radio" {if condition="$info.is_qa eq '1'"}checked{/if} title="开启">
+							<input name="is_qa" value="0" type="radio" {if condition="$info.is_qa eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">标题：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="ag_title" value="{$info.ag_title}" name="ag_title" class="form-control" placeholder="请输入标题">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">协议内容：</label>
+						<div class="col-sm-9">
+							<script id="ag_body" type="text/plain" name="ag_body" style="width:100%;height:300px;">{$info.ag_body}</script>
+							<script type="text/javascript">
+								var ue = UE.getEditor('ag_body',{serverUrl : '{:url("admin/Upload/uploadUeditor")}'});
+								scaleEnabled:true
+							</script>
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">关于我们：</label>
+						<div class="col-sm-9">
+								<textarea id="about_body" name="about_body" style="width: 100%; height:300px;">{$info.about_body}</textarea>
+								<script type="text/javascript">$('#about_body').xheditor({html5Upload:false,upLinkUrl:"{:url('admin/Upload/editorUpload')}",upLinkExt:"zip,rar,txt,doc,docx,pdf,xls,xlsx",upImgUrl:"{:url('admin/Upload/editorUpload')}",upImgExt:"jpg,jpeg,gif,png"});</script>
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">分享文本：</label>
+						<div class="col-sm-9">
+								<textarea id="share_body" name="share_body" style="width: 100%; height:300px;">{$info.share_body}</textarea>
+								<script type="text/javascript">$('#share_body').xheditor({html5Upload:false,upLinkUrl:"{:url('admin/Upload/editorUpload')}",upLinkExt:"zip,rar,txt,doc,docx,pdf,xls,xlsx",upImgUrl:"{:url('admin/Upload/editorUpload')}",upImgExt:"jpg,jpeg,gif,png"});</script>
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+						<div class="layui-tab-item">
+							<div class="col-sm-7">
+							<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">积分商城内容：</label>
+						<div class="col-sm-9">
+								<textarea id="integer_shop_body" name="integer_shop_body" style="width: 100%; height:300px;">{$info.integer_shop_body}</textarea>
+								<script type="text/javascript">$('#integer_shop_body').xheditor({html5Upload:false,upLinkUrl:"{:url('admin/Upload/editorUpload')}",upLinkExt:"zip,rar,txt,doc,docx,pdf,xls,xlsx",upImgUrl:"{:url('admin/Upload/editorUpload')}",upImgExt:"jpg,jpeg,gif,png"});</script>
+						</div>
+					</div>
+							<!-- form end -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-7">
+					<button type="button" class="btn btn-primary" onclick="CodeInfoDlg.index()" id="ensure">
+						<i class="fa fa-check"></i>&nbsp;确认提交
+					</button>
+					<button type="button" class="btn btn-danger" onclick="CodeInfoDlg.close()" id="cancel">
+						<i class="fa fa-eraser"></i>&nbsp;取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/static/js/upload.js" charset="utf-8"></script>
+<script src="__PUBLIC__/static/js/plugins/layui/layui.js?t=1498856285724" charset="utf-8"></script>
+<link href='__PUBLIC__/static/js/plugins/chosen/chosen.min.css' rel='stylesheet'/>
+<script src='__PUBLIC__/static/js/plugins/chosen/chosen.jquery.js'></script>
+<link rel='stylesheet' href='__PUBLIC__/static/js/plugins/tagsinput/tagsinput.css'>
+<script type='text/javascript' src='__PUBLIC__/static/js/plugins/tagsinput/tagsinput.min.js'></script>
+<script>
+layui.use(['form'],function(){});
+layui.use('element', function(){
+	var element = layui.element;
+	element.on('tab(test)', function(elem){
+	});
+});
+uploader('site_logo_upload','site_logo','image',false,'','{:getUploadServerUrl()}');
+uploader('water_logo_upload','water_logo','image',false,'','{:getUploadServerUrl()}');
+uploader('member_default_avatar_upload','member_default_avatar','image',false,'','{:getUploadServerUrl()}');
+var CodeInfoDlg = {
+	CodeInfoData: {},
+	validateFields: {
+		site_title: {
+			validators: {
+				notEmpty: {
+					message: '站点名称不能为空'
+	 			},
+	 		}
+	 	},
+		ag_title: {
+			validators: {
+				notEmpty: {
+					message: '标题不能为空'
+	 			},
+	 		}
+	 	},
+		ag_body: {
+			validators: {
+				notEmpty: {
+					message: '协议内容不能为空'
+	 			},
+	 		}
+	 	},
+		is_discover: {
+			validators: {
+				notEmpty: {
+					message: 'Discover推荐分类开关不能为空'
+	 			},
+	 		}
+	 	},
+		is_community: {
+			validators: {
+				notEmpty: {
+					message: 'Community推荐分类开关不能为空'
+	 			},
+	 		}
+	 	},
+		is_qa: {
+			validators: {
+				notEmpty: {
+					message: 'Q&A推荐分类开关不能为空'
+	 			},
+	 		}
+	 	},
+	 }
+}
+
+CodeInfoDlg.collectData = function () {
+	this.set('site_title').set('site_logo').set('keyword').set('description').set('file_size').set('file_type').set('copyright').set('water_position').set('water_logo').set('domain').set('email_stmp_address').set('email_stmp_port').set('email_username').set('email_nickname').set('email_stmp_code').set('member_default_avatar').set('ag_title').set('about_body').set('share_body').set('integer_shop_body');
+};
+
+CodeInfoDlg.index = function () {
+	 this.clearData();
+	 this.collectData();
+	 if (!this.validate()) {
+	 	return;
+	 }
+	 var water_status = $("input[name = 'water_status']:checked").val();
+	 var community_auth_status = $("input[name = 'community_auth_status']:checked").val();
+	 var community_comment_status = $("input[name = 'community_comment_status']:checked").val();
+	 var community_comment_auth_status = $("input[name = 'community_comment_auth_status']:checked").val();
+	 var discover_comment_status = $("input[name = 'discover_comment_status']:checked").val();
+	 var discover_comment_auth_status = $("input[name = 'discover_comment_auth_status']:checked").val();
+	 var qa_auth_status = $("input[name = 'qa_auth_status']:checked").val();
+	 var qa_comment_status = $("input[name = 'qa_comment_status']:checked").val();
+	 var qa_comment_auth_status = $("input[name = 'qa_comment_auth_status']:checked").val();
+	 var ag_body = UE.getEditor('ag_body').getContent();
+	 var is_discover = $("input[name = 'is_discover']:checked").val();
+	 var is_community = $("input[name = 'is_community']:checked").val();
+	 var is_qa = $("input[name = 'is_qa']:checked").val();
+	 var ajax = new $ax(Feng.ctxPath + "/Base/config", function (data) {
+	 	if ('00' === data.status) {
+	 		Feng.success(data.msg,1000);
+	 	} else {
+	 		Feng.error(data.msg + "！",1000);
+		 }
+	 })
+	 ajax.set('water_status',water_status);
+	 ajax.set('community_auth_status',community_auth_status);
+	 ajax.set('community_comment_status',community_comment_status);
+	 ajax.set('community_comment_auth_status',community_comment_auth_status);
+	 ajax.set('discover_comment_status',discover_comment_status);
+	 ajax.set('discover_comment_auth_status',discover_comment_auth_status);
+	 ajax.set('qa_auth_status',qa_auth_status);
+	 ajax.set('qa_comment_status',qa_comment_status);
+	 ajax.set('qa_comment_auth_status',qa_comment_auth_status);
+	 ajax.set('ag_body',ag_body);
+	 ajax.set('is_discover',is_discover);
+	 ajax.set('is_community',is_community);
+	 ajax.set('is_qa',is_qa);
+	 ajax.set(this.CodeInfoData);
+	 ajax.start();
+};
+</script>
+
+
+<script src="__PUBLIC__/static/js/base.js" charset="utf-8"></script>
+{/block}

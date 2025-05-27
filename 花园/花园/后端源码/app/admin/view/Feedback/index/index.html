@@ -1,0 +1,243 @@
+{extend name='common/_container'} {block name="content"}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-content"> 
+				<div class="row row-lg"> 
+					<div class="col-sm-12"> 
+						<div class="row" id="searchGroup">
+							<!-- search end -->
+						</div>
+						<div class="btn-group-sm" id="CodeGoodsTableToolbar" role="group">
+						{if condition="in_array('admin/Feedback.Index/delete',session('admin.nodes')) || session('admin.role_id') eq 1"}
+						<button type="button" id="delete" class="btn btn-danger button-margin" onclick="CodeGoods.delete()">
+						<i class="fa fa-trash"></i>&nbsp;删除
+						</button>
+						{/if}
+						{if condition="in_array('admin/Feedback.Index/view',session('admin.nodes')) || session('admin.role_id') eq 1"}
+						<button type="button" id="view" class="btn btn-info button-margin" onclick="CodeGoods.view()">
+						<i class="fa fa-eye"></i>&nbsp;查看详情
+						</button>
+						{/if}
+						{if condition="in_array('admin/Feedback.Index/points',session('admin.nodes')) || session('admin.role_id') eq 1"}
+						<button type="button" id="points" class="btn btn-primary button-margin" onclick="CodeGoods.points()">
+						<i class="fa fa-pencil"></i>&nbsp;加积分
+						</button>
+						{/if}
+						</div>
+						<table id="CodeGoodsTable" data-mobile-responsive="true" data-click-to-select="true">
+							<thead><tr><th data-field="selectItem" data-checkbox="true"></th></tr></thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var CodeGoods = {id: "CodeGoodsTable",seItem: null,table: null,layerIndex: -1};
+
+	CodeGoods.initColumn = function () {
+ 		return [
+ 			{field: 'selectItem', checkbox: true},
+ 			{title: '编号', field: 'feedback_id', visible: true, align: 'center', valign: 'middle',sortable: true},
+ 			{title: '用户ID', field: 'member_id', visible: false, align: 'center', valign: 'middle',sortable: true},
+ 			{title: '是否加积分', field: 'points', visible: true, align: 'center', valign: 'middle',sortable: true,formatter:CodeGoods.pointsFormatter},
+ 			{title: '反馈内容', field: 'body', visible: true, align: 'center', valign: 'middle',sortable: true},
+ 			{title: '操作', field: '', visible: true, align: 'center', valign: 'middle',formatter: 'CodeGoods.buttonFormatter'},
+ 		];
+ 	};
+
+	CodeGoods.buttonFormatter = function(value,row,index) {
+		if(row.feedback_id){
+			var str= '';
+			{if condition="in_array('admin/Feedback.Index/delete',session('admin.nodes')) || session('admin.role_id') eq 1"}
+			str += '<button type="button" class="btn btn-danger btn-xs" title="删除"  onclick="CodeGoods.delete('+row.feedback_id+')"><i class="fa fa-trash"></i>&nbsp;删除</button>&nbsp;';
+			{/if}
+			{if condition="in_array('admin/Feedback.Index/points',session('admin.nodes')) || session('admin.role_id') eq 1"}
+			str += '<button type="button" class="btn btn-primary btn-xs" title="加积分"  onclick="CodeGoods.points('+row.feedback_id+')"><i class="fa fa-pencil"></i>&nbsp;加积分</button>&nbsp;';
+			{/if}
+			{if condition="in_array('admin/Member.Member/view',session('admin.nodes')) || session('admin.role_id') eq 1"}
+			str += '<button type="button" class="btn btn-primary btn-xs" title="查看发布用户"  onclick="CodeGoods.seeMemberInfo('+row.feedback_id+',\''+row.member_id+'\')"><i class="fa fa-plus"></i>&nbsp;查看发布用户</button>&nbsp;';
+			{/if}
+			return str;
+		}
+	}
+
+	CodeGoods.pointsFormatter = function(value,row,index) {
+		if(value !== null){
+			var value = value.toString();
+			switch(value){
+				case '1':
+					return '<span class="label label-success">是</span>';
+				break;
+				case '0':
+					return '<span class="label label-danger">否</span>';
+				break;
+			}
+		}
+	}
+
+	CodeGoods.formParams = function() {
+		var queryData = {};
+		queryData['offset'] = 0;
+		return queryData;
+	}
+
+	CodeGoods.check = function () {
+		var selected = $('#' + this.id).bootstrapTable('getSelections');
+		if(selected.length == 0){
+			Feng.info("请先选中表格中的某一记录！");
+			return false;
+		}else{
+			CodeGoods.seItem = selected;
+			return true;
+		}
+	};
+
+	CodeGoods.delete = function (value) {
+		if(value){
+			Feng.confirm("是否删除选中项？", function () {
+				var ajax = new $ax(Feng.ctxPath + "/Feedback.Index/delete", function (data) {
+					if ('00' === data.status) {
+						Feng.success(data.msg);
+						CodeGoods.table.refresh();
+					} else {
+						Feng.error(data.msg);
+					}
+				});
+				ajax.set('feedback_id', value);
+				ajax.start();
+			});
+		}else{
+			if (this.check()) {
+				var idx = '';
+				$.each(CodeGoods.seItem, function() {
+					idx += ',' + this.feedback_id;
+				});
+				idx = idx.substr(1);
+				Feng.confirm("是否删除选中项？", function () {
+					var ajax = new $ax(Feng.ctxPath + "/Feedback.Index/delete", function (data) {
+						if ('00' === data.status) {
+							Feng.success(data.msg,1000);
+							CodeGoods.table.refresh();
+						} else {
+							Feng.error(data.msg,1000);
+						}
+					});
+					ajax.set('feedback_id', idx);
+					ajax.start();
+				});
+			}
+		}
+	}
+
+
+	CodeGoods.view = function (value) {
+		if(value){
+			var index = layer.open({type: 2,title: '查看详情',area: ['600px', '400px'],fix: false, maxmin: true,content: Feng.ctxPath + '/Feedback.Index/view?feedback_id='+value});
+			if(!IsPC()){layer.full(index)}
+		}else{
+			if (this.check()) {
+				var idx = '';
+				$.each(CodeGoods.seItem, function() {
+					idx += ',' + this.feedback_id;
+				});
+				idx = idx.substr(1);
+				if(idx.indexOf(",") !== -1){
+					Feng.info("请选择单条数据！");
+					return false;
+				}
+				var index = layer.open({type: 2,title: '查看详情',area: ['600px', '400px'],fix: false, maxmin: true,content: Feng.ctxPath + '/Feedback.Index/view?feedback_id='+idx});
+				this.layerIndex = index;
+				if(!IsPC()){layer.full(index)}
+			}
+		}
+	}
+
+
+	CodeGoods.points = function (value) {
+		if(value){
+			Feng.confirm("是否加积分选中项？", function () {
+				var ajax = new $ax(Feng.ctxPath + "/Feedback.Index/points", function (data) {
+					if ('00' === data.status) {
+						Feng.success(data.msg);
+						CodeGoods.table.refresh();
+					} else {
+						Feng.error(data.msg);
+					}
+				});
+				ajax.set('feedback_id', value);
+				ajax.start();
+			});
+		}else{
+			if (this.check()) {
+				var idx = '';
+				$.each(CodeGoods.seItem, function() {
+					idx += ',' + this.feedback_id;
+				});
+				idx = idx.substr(1);
+				Feng.confirm("是否加积分选中项？", function () {
+					var ajax = new $ax(Feng.ctxPath + "/Feedback.Index/points", function (data) {
+						if ('00' === data.status) {
+							Feng.success(data.msg,1000);
+							CodeGoods.table.refresh();
+						} else {
+							Feng.error(data.msg,1000);
+						}
+					});
+					ajax.set('feedback_id', idx);
+					ajax.start();
+				});
+			}
+		}
+	}
+
+
+	CodeGoods.seeMemberInfo = function (value,member_id) {
+		if(value){
+			var queryData = {};
+			queryData['feedback_id'] = value;
+			queryData['member_id'] = member_id;
+			var index = layer.open({type: 2,title: '查看发布用户',area: ['600px', '350px'],fix: false, maxmin: true,content: Feng.ctxPath + '/Member.Member/view?'+Feng.parseParam(queryData)});
+			this.layerIndex = index;
+			if(!IsPC()){layer.full(index)}
+		}else{
+			if (this.check()) {
+				var idx = '';
+				var member_id = '';
+				$.each(CodeGoods.seItem, function() {
+					idx += ',' + this.feedback_id;
+					member_id += ',' + this.member_id;
+				});
+				idx = idx.substr(1);
+				member_id = member_id.substr(1);
+				if(idx.indexOf(",") !== -1){
+					Feng.info("请选择单条数据！");
+					return false;
+				}
+				var queryData = {};
+				queryData['feedback_id'] = idx;
+				queryData['member_id'] = member_id;
+				var index = layer.open({type: 2,title: '查看发布用户',area: ['600px', '350px'],fix: false, maxmin: true,content: Feng.ctxPath + '/Member.Member/view?'+Feng.parseParam(queryData)});
+				this.layerIndex = index;
+				if(!IsPC()){layer.full(index)}
+			}
+		}
+	}
+
+
+	CodeGoods.search = function() {
+		CodeGoods.table.refresh({query : CodeGoods.formParams()});
+	};
+
+	$(function() {
+		var defaultColunms = CodeGoods.initColumn();
+		var url = location.search;
+		var table = new BSTable(CodeGoods.id, Feng.ctxPath+"/Feedback.Index/index"+url,defaultColunms,20);
+		table.setPaginationType("server");
+		table.setQueryParams(CodeGoods.formParams());
+		CodeGoods.table = table.init();
+	});
+</script>
+{/block}

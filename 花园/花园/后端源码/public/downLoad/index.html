@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDT互联网医院</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0
+    }
+
+    .flex {
+        display: flex;
+        display: -ms-flex;
+        display: -webkit-flex;
+    }
+
+    .flex_1 {
+        flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+    }
+
+    .f_warp {
+        flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+    }
+
+    .itc {
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+    }
+
+    .juc {
+        -webkit-justify-content: center;
+        -ms-justify-content: center;
+        justify-content: center;
+    }
+
+
+    .logo_box {
+        position: relative;
+        width: 100%;
+        padding-top: 140%;
+    }
+
+    .logo {
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    .btn_box {
+        width: 100%;
+        height: calc(100vh - 140vw);
+        background: url(images/background.jpg);
+    }
+
+    .word_img {
+        width: 70%;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    .name {
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .icon {
+        width: 30px;
+        margin-right: 5px;
+    }
+
+    .btn {
+        /*width: 30%;*/
+        height: 36px;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        padding: 0 5vw;
+    }
+
+    .mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        display: none;
+    }
+
+    .mask img {
+        float: right;
+        width: 250px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="logo_box">
+        <img src="images/logo.jpg" alt="" class="logo">
+    </div>
+    <div class="btn_box flex itc">
+        <div class="">
+            <div class="flex juc itc ">
+                <img src="images/word.png" alt="" class="word_img">
+            </div>
+            <div class="flex juc" style="margin-bottom: 2vh">
+                <div class="" onclick="isWeiXin('http://gj.qianyiwangluo.com:8080/group1/default/20211216/13/31/1/MDT医生0924.apk')">
+                    <div class="flex itc itc btn">
+                        <img src="images/Android.png" alt="" class="icon">
+                        <div class="name">医生端下载</div>
+                    </div>
+                </div>
+                <div style="width: 20px"></div>
+                <div class="" onclick="isWeiXin()">
+                    <div class="flex itc itc btn">
+                        <img src="images/IOS.png" alt="" class="icon">
+                        <div class="name">医生端下载</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex juc">
+                <div class="" onclick="isWeiXin('http://gj.qianyiwangluo.com:8080/group1/default/20211216/13/27/1/MDT药师1208.apk')">
+                    <div class="flex itc itc btn">
+                        <img src="images/Android.png" alt="" class="icon">
+                        <div class="name">药师端下载</div>
+                    </div>
+                </div>
+                <div style="width: 20px"></div>
+                <div class="" onclick="isWeiXin()">
+                    <div class="flex itc itc btn">
+                        <img src="images/IOS.png" alt="" class="icon">
+                        <div class="name">药师端下载</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mask" onclick='$(".mask").hide();'>
+        <img src="images/tip_zh.png" alt="">
+    </div>
+</body>
+<script src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script>
+// 打开app
+function isWeiXin(url) {
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') { //微信
+        $(".mask").show();
+    } else {
+        openDownUrl(url)
+    }
+};
+function openDownUrl(url) {
+	if(!url) {
+		alert('抱歉,暂无下载连接')
+	} else {
+		window.location.href = url;
+	}
+}
+</script>
+
+</html>

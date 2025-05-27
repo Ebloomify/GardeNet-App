@@ -1,0 +1,146 @@
+{extend name='common/_container'}
+{block name="content"}
+<div class="ibox float-e-margins">
+<input type="hidden" name='question_id' id='question_id' value="{$info.question_id}" />
+	<div class="ibox-content">
+		<div class="form-horizontal" id="CodeInfoForm">
+			<div class="row">
+				<div class="col-sm-12">
+				<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">标题：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="title" value="{$info.title}" name="title" class="form-control" placeholder="请输入标题">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">所属分类：</label>
+						<div class="col-sm-9">
+							<select lay-ignore name="question_cate_id" class="form-control" id="question_cate_id">
+								<option value="">请选择</option>
+								{sql connect="mysql" query="select question_cate_id,cate_name from cd_question_cate "}
+									<option value="{$sql.question_cate_id}" {if condition="$info.question_cate_id eq $sql.question_cate_id"}selected{/if}>{$sql.cate_name}</option>
+								{/sql}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">问题内容：</label>
+						<div class="col-sm-9">
+							<textarea id="content" name="content"  class="form-control" placeholder="请输入问题内容">{$info.content}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">积分设置：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="integer_sum" value="{$info.integer_sum}" name="integer_sum" class="form-control" placeholder="请输入积分设置">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">审核状态：</label>
+						<div class="col-sm-9">
+							<select lay-ignore name="auth_status" class="form-control" id="auth_status">
+								<option value="">请选择</option>
+								<option value="1" {if condition="$info.auth_status eq '1'"}selected{/if}>通过</option>
+								<option value="0" {if condition="$info.auth_status eq '0'"}selected{/if}>未通过</option>
+								<option value="2" {if condition="$info.auth_status eq '2'"}selected{/if}>未审核</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">审核消息：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="auth_msg" value="{$info.auth_msg}" name="auth_msg" class="form-control" placeholder="请输入审核消息">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">状态：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['status'])){ $info['status'] = 1; }; ?>
+							<input name="status" value="1" type="radio" {if condition="$info.status eq '1'"}checked{/if} title="开启">
+							<input name="status" value="0" type="radio" {if condition="$info.status eq '0'"}checked{/if} title="关闭">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">解决状态：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['resolved_status'])){ $info['resolved_status'] = '1'; }; ?>
+							<input name="resolved_status" value="1" type="radio" {if condition="$info.resolved_status eq '1'"}checked{/if} title="未解决">
+							<input name="resolved_status" value="2" type="radio" {if condition="$info.resolved_status eq '2'"}checked{/if} title="已解决">
+						</div>
+					</div>
+					<div class="form-group layui-form">
+						<label class="col-sm-2 control-label">是否推荐：</label>
+						<div class="col-sm-9">
+							<?php if(!isset($info['is_re'])){ $info['is_re'] = 0; }; ?>
+							<input name="is_re" value="1" type="radio" {if condition="$info.is_re eq '1'"}checked{/if} title="是">
+							<input name="is_re" value="0" type="radio" {if condition="$info.is_re eq '0'"}checked{/if} title="否">
+						</div>
+					</div>
+				<!-- form end -->
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-9 col-sm-offset-1">
+					<button type="button" class="btn btn-primary" onclick="CodeInfoDlg.update()" id="ensure">
+						<i class="fa fa-check"></i>&nbsp;确认提交
+					</button>
+					<button type="button" class="btn btn-danger" onclick="CodeInfoDlg.close()" id="cancel">
+						<i class="fa fa-eraser"></i>&nbsp;取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/static/js/upload.js" charset="utf-8"></script>
+<script src="__PUBLIC__/static/js/plugins/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use(['form'],function(){});
+var CodeInfoDlg = {
+	CodeInfoData: {},
+	validateFields: {
+		is_re: {
+			validators: {
+				notEmpty: {
+					message: '是否推荐不能为空'
+	 			},
+	 		}
+	 	},
+	 }
+}
+
+CodeInfoDlg.collectData = function () {
+	this.set('question_id').set('title').set('question_cate_id').set('content').set('integer_sum').set('auth_status').set('auth_msg');
+};
+
+CodeInfoDlg.update = function () {
+	 this.clearData();
+	 this.collectData();
+	 if (!this.validate()) {
+	 	return;
+	 }
+	 var status = $("input[name = 'status']:checked").val();
+	 var resolved_status = $("input[name = 'resolved_status']:checked").val();
+	 var is_re = $("input[name = 'is_re']:checked").val();
+	 var ajax = new $ax(Feng.ctxPath + "/QA.Question/update", function (data) {
+	 	if ('00' === data.status) {
+	 		Feng.success(data.msg,1000);
+	 		window.parent.CodeGoods.table.refresh();
+	 		CodeInfoDlg.close();
+	 	} else {
+	 		Feng.error(data.msg + "！",1000);
+		 }
+	 })
+	 ajax.set('status',status);
+	 ajax.set('resolved_status',resolved_status);
+	 ajax.set('is_re',is_re);
+	 ajax.set(this.CodeInfoData);
+	 ajax.start();
+};
+
+
+</script>
+<script src="__PUBLIC__/static/js/base.js" charset="utf-8"></script>
+{/block}

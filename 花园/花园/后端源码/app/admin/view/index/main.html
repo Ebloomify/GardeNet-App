@@ -1,0 +1,401 @@
+{extend name='common/_container2'} 
+{block name="content"}
+<style>
+.ibox-content{
+	background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0px;
+}
+</style>
+ <div class="row">
+	<div class="col-sm-3">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>Discover</h5>
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-info pull-right">当日</span>{$dis.d}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-success pull-right">当月</span>{$dis.m}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-warning pull-right">总计</span>{$dis.count}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>community</h5>
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-info pull-right">当日</span>{$comm.d}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-success pull-right">当月</span>{$comm.m}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-warning pull-right">总计</span>{$comm.count}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>Q&A</h5>
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-info pull-right">当日</span>{$qa.d}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-success pull-right">当月</span>{$qa.m}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-warning pull-right">总计</span>{$qa.count}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>用户</h5>
+			</div>
+			<div class="ibox-content">
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-info pull-right">当日</span>{$member.d}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-success pull-right">当月</span>{$member.m}</h1>
+				<h1 class="no-margins"><span style="margin-top:8px;" class="label label-warning pull-right">总计</span>{$member.count}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>当月赠送积分折线图</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="graph_flot.html#">选项1</a>
+                                </li>
+                                <li><a href="graph_flot.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="echarts" id="echarts-line-chart"></div>
+                    </div>
+                </div>
+            </div>
+    <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>年度赠送积分树状图</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="graph_flot.html#">选项1</a>
+                                </li>
+                                <li><a href="graph_flot.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="echarts" id="echarts-bar-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="col-sm-8">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>当月消耗积分折线图</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="graph_flot.html#">选项1</a>
+                        </li>
+                        <li><a href="graph_flot.html#">选项2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="echarts" id="echarts-line-chart2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>年度消耗积分树状图</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="graph_flot.html#">选项1</a>
+                        </li>
+                        <li><a href="graph_flot.html#">选项2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+
+                <div class="echarts" id="echarts-bar-chart2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+ <!-- ECharts -->
+    <script src="__PUBLIC__/static/js/echarts-all.js"></script>
+	<script>
+        $(function () {
+            let m_x_data =  transArr({$m_x_data|json_encode=true});
+            let y_x_data =  transArr({$y_x_data|json_encode=true});
+            let m_s_data =  transArr({$m_s_data|json_encode=true});
+            let y_s_data =  transArr({$y_s_data|json_encode=true});
+            console.log(m_s_data);
+            var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
+            let keys = [];
+            let values = [];
+            y_s_data.forEach((item, index) => {
+                console.log(index,item);
+                keys.push(index+'月');
+                values.push(item)
+            });console.log(keys,values);
+            var lineoption = {
+                title : {
+                    text: '当月送出积分折线图'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                grid:{
+                    x:40,
+                    x2:40,
+                    y2:24
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                    }
+                ],
+                series : [
+                    {
+                        name:'积分数量',
+                        type:'line',
+                        data:m_s_data,
+                        markPoint : {
+                            data : [
+                                // {type : 'max', name: '最大值'},
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                // {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            lineChart.setOption(lineoption);
+            $(window).resize(lineChart.resize);
+
+            var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+            var baroption = {
+                title : {
+                    text: '一年内每月送出积分数量'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                grid:{
+                    x:30,
+                    x2:40,
+                    y2:24
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : keys
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'积分数量',
+                        type:'bar',
+                        data:values,
+                        markPoint : {
+                            data : [
+                                // {type : 'max', name: '最大值'},
+                                // {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                // {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart.setOption(baroption);
+            window.onresize = barChart.resize;
+
+            var lineChart1 = echarts.init(document.getElementById("echarts-line-chart2"));
+            let keys1 = [];
+            let values1 = [];
+            y_x_data.forEach((item, index) => {
+                keys1.push(index+'月');
+                values1.push(item)
+            });
+            var lineoption1 = {
+                title : {
+                    text: '当月消耗积分数量折线图'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                grid:{
+                    x:40,
+                    x2:40,
+                    y2:24
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                    }
+                ],
+                series : [
+                    {
+                        name:'积分数量',
+                        type:'line',
+                        data:m_x_data,
+                        markPoint : {
+                            data : [
+                                // {type : 'max', name: '最大值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                // {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            lineChart1.setOption(lineoption1);
+            $(window).resize(lineChart1.resize);
+
+            var barChart1 = echarts.init(document.getElementById("echarts-bar-chart2"));
+            var baroption1 = {
+                title : {
+                    text: '一年内每月消耗积分数量'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                grid:{
+                    x:30,
+                    x2:40,
+                    y2:24
+                },
+                calculable : true,
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : keys1
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name:'积分数量',
+                        type:'bar',
+                        data:values1,
+                        markPoint : {
+                            data : [
+                                // {type : 'max', name: '最大值'},
+                                // {type : 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                // {type : 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+            barChart1.setOption(baroption1);
+            window.onresize = barChart1.resize;
+        });
+
+        function transArr(obj){
+            var tem=[];
+            $.each(obj, function(i) {
+                tem[i]=obj[i];
+            });
+            return tem;
+        }
+
+	</script>
+{/block}

@@ -1,0 +1,160 @@
+{extend name='common/_container'}
+{block name="content"}
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="CodeInfoForm">
+			<div class="row">
+				<div class="col-sm-12">
+				<!-- form start -->
+					<div class="form-group">
+						<label class="col-sm-2 control-label">common name：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="common_name" value="" name="common_name" class="form-control" placeholder="请输入common name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">用户ID：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="member_id" value="" name="member_id" class="form-control" placeholder="请输入用户ID">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">plant name：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="plant_name" value="" name="plant_name" class="form-control" placeholder="请输入plant name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">plant introduction：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="plant_introduction" value="" name="plant_introduction" class="form-control" placeholder="请输入plant introduction">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">duration：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="duration" value="" name="duration" class="form-control" placeholder="请输入duration">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">flower color：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="flower_color" value="" name="flower_color" class="form-control" placeholder="请输入flower color">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">fertilization：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="fertilization" value="" name="fertilization" class="form-control" placeholder="请输入fertilization">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">water：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="water" value="" name="water" class="form-control" placeholder="请输入water">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">exposure：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="exposure" value="" name="exposure" class="form-control" placeholder="请输入exposure">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">soil：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="soil" value="" name="soil" class="form-control" placeholder="请输入soil">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">minimum Tempature：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="minimum_tempature" value="" name="minimum_tempature" class="form-control" placeholder="请输入minimum Tempature">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">blooming：</label>
+						<div class="col-sm-9">
+							<input type="text" autocomplete="off" id="blooming" value="" name="blooming" class="form-control" placeholder="请输入blooming">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">图片：</label>
+						<div class="col-sm-6">
+							<div class="img pic_list">
+								<li id="img_upload"></li>
+							</div>
+							<div style="clear:both"></div>
+							<span class="help-block m-b-none img_process"></span>
+						</div>
+					</div>
+				<!-- form end -->
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-9 col-sm-offset-1">
+					<button type="button" class="btn btn-primary" onclick="CodeInfoDlg.add()" id="ensure">
+						<i class="fa fa-check"></i>&nbsp;确认提交
+					</button>
+					<button type="button" class="btn btn-danger" onclick="CodeInfoDlg.close()" id="cancel">
+						<i class="fa fa-eraser"></i>&nbsp;取消
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/static/js/upload.js" charset="utf-8"></script>
+<script src="__PUBLIC__/static/js/plugins/layui/layui.js" charset="utf-8"></script>
+<script src='__PUBLIC__/static/js/plugins/paixu/jquery-migrate-1.1.1.js'></script>
+<script src='__PUBLIC__/static/js/plugins/paixu/jquery.dragsort-0.5.1.min.js'></script>
+<script>
+$(function(){
+	$(".filelist").dragsort({dragSelector: "img",dragBetween: true ,dragEnd:function(){}});
+});
+layui.use(['form'],function(){});
+uploader('img_upload','img','image',true,'{$info.img}','{:getUploadServerUrl()}');
+setUploadButton('img_upload');
+laydate.render({elem: '#create_time',type: 'datetime',trigger:'click'});
+laydate.render({elem: '#update_time',type: 'datetime',trigger:'click'});
+var CodeInfoDlg = {
+	CodeInfoData: {},
+	validateFields: {
+	 }
+}
+
+CodeInfoDlg.collectData = function () {
+	this.set('id').set('common_name').set('member_id').set('plant_name').set('plant_introduction').set('duration').set('flower_color').set('fertilization').set('water').set('exposure').set('soil').set('minimum_tempature').set('blooming').set('create_time').set('update_time');
+};
+
+CodeInfoDlg.add = function () {
+	 this.clearData();
+	 this.collectData();
+	 if (!this.validate()) {
+	 	return;
+	 }
+	 var img = {};
+	 $(".img li").each(function() {
+		if($(this).find('img').attr('src')){
+	 		img[$(this).index()] = {'url':$(this).find('img').attr('src'),'title':$(this).find('input').val()};
+		}
+	 });
+	 var ajax = new $ax(Feng.ctxPath + "/Garden/add", function (data) {
+	 	if ('00' === data.status) {
+	 		Feng.success(data.msg,1000);
+	 		window.parent.CodeGoods.table.refresh();
+	 		CodeInfoDlg.close();
+	 	} else {
+	 		Feng.error(data.msg + "！",1000);
+		 }
+	 })
+	 ajax.set('img',(JSON.stringify(img) == '{}' || JSON.stringify(img) == '{"":""}') ? '' : JSON.stringify(img));
+	 ajax.set(this.CodeInfoData);
+	 ajax.start();
+};
+
+
+</script>
+<script src="__PUBLIC__/static/js/base.js" charset="utf-8"></script>
+{/block}

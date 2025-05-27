@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="telephone=no">
+    <title>MyGarden</title>
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/jquery-weui.min.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .code{
+            width: 60px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+        }
+        .btn_box{
+            width: 80%;
+            margin: auto;  
+            margin-top: 40px
+        }
+        .disabled {
+            background-color: #ededed;
+            background-image: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="images/login.jpg" alt="" class="top_img">
+        <img src="images/logo.png" alt="" class="logo">
+        <div class="fz20 c3 fw9 tac mb20">MY GardeNet</div>
+        <div class="box">
+            <div class="flex itc h50 bb1">
+                <div class="icon iconzhanghu fz20 c9 list_icon"></div>
+                <input type="text" name="phone" placeholder="Email" class="fz16 c3 flex_1" value="">
+            </div>
+            <div class="flex itc h50 bb1">
+                <div class="icon iconmima fz20 c9 list_icon"></div>
+                <input type="text" name="code" placeholder="Verification Code" class="fz16 c3 flex_1">
+                <div class="btn code" onclick="codeFn()">code</div>
+            </div>
+            <div class="flex itc h50 bb1">
+                <div class="icon iconmima fz20 c9 list_icon"></div>
+                <input type="password" name="password" placeholder="Password" class="fz16 c3 flex_1">
+            </div>
+            <div class="flex itc h50 bb1">
+                <div class="icon iconmima fz20 c9 list_icon"></div>
+                <input type="password" name="rePassword" placeholder="Comfirm password" class="fz16 c3 flex_1">
+            </div>
+        </div>
+        <!--  -->
+        <div class="btn_box" onclick="submit()">
+            <div class="btn cf tac">Register</div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-2.1.4.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script>
+var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
+    time = 60,
+    timer,
+    disabled = false,
+    codeDisabled = false,
+    backCode = "",
+    // ajaxUrl = "http://39.106.204.232/";
+    ajaxUrl = "http://garde.ixiwei.top/api";
+
+function codeFn() {
+    if (codeDisabled) {
+        return;
+    };
+    var phone = $.trim($("input[name='phone']").val()),
+        code = $.trim($("input[name='code']").val()),
+        password = $("input[name='password']").val(),
+        rePassword = $("input[name='rePassword']").val();
+    if (!myreg.test(phone)) {
+        $.alert('Email address error', 'Tips');
+        return;
+    };
+    codeDisabled = true;
+    $.showLoading('Loading');
+    var datas = {
+        email: phone
+    };
+    $.ajax({
+        url: ajaxUrl + '/Base/emailCode',
+        type: 'POST',
+        data: datas,
+        dataType: 'JSON',
+        success: function(res) {
+            if (res.status == 200) {
+                var timer = setInterval(() => {
+                    if (time == 1) {
+                        clearInterval(timer);
+                        codeDisabled = false;
+                        time = 60;
+                        $('.code').html('code');
+                        $('.code').removeClass('disabled');
+                    } else {
+                        time--;
+                        $('.code').html(time);
+                        $('.code').addClass('disabled')
+                    }
+                }, 1000);
+            } else {
+                codeDisabled = false;
+                $.alert(res.msg, 'Tips');
+            };
+        },
+        error: function(err) {
+            codeDisabled = false;
+            $.alert('Error', 'Tips');
+            console.log(err)
+        },
+        complete: function() {
+            $.hideLoading();
+            codeDisabled = false;
+        }
+    })
+};
+
+function submit() {
+    if (disabled) {
+        return;
+    };
+    var phone = $.trim($("input[name='phone']").val()),
+        code = $.trim($("input[name='code']").val()),
+        password = $("input[name='password']").val(),
+        rePassword = $("input[name='rePassword']").val();
+    if (!myreg.test(phone)) {
+        $.alert('Please enter the correct email', 'Tips');
+        return;
+    };
+    // if (!code || code != backCode) {
+    //     $.alert('Verification code error', 'Tips');
+    //     return;
+    // }
+    if (!password || password.length < 6) {
+        $.alert('Please input a password', 'Tips');
+        return;
+    }
+    if (rePassword !== password) {
+        $.alert('The two passwords are inconsistent', 'Tips');
+        return;
+    }
+    $.showLoading('Loading');
+    disabled = true;
+    var datas = {
+        email: phone,
+        code: code,
+        password: password,
+        re_password: rePassword,
+        invitation_code: getQueryVariable('id') || ''
+    };
+
+    $.ajax({
+        url: ajaxUrl + '/V1.Member/register',
+        type: 'POST',
+        data: datas,
+        dataType: 'JSON',
+        success: function(res) {
+            if (res.status == 200) {
+                $.alert('Success', 'Tips', function() {
+                    $.alert('暂无下载地址', 'Tips');
+                });
+            } else {
+                disabled = false;
+                if(res.msg == "该账户已注册") {
+                    $.alert("The account is already registered", 'Tips');
+                } else {
+                    $.alert("Fail", 'Tips');
+                }
+                
+            };
+        },
+        error: function(err) {
+
+            console.log(err)
+        },
+        complete: function() {
+            $.hideLoading();
+            disabled = false;
+        }
+    })
+};
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
+</script>
+
+</html>
